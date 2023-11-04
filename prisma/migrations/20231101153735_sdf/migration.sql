@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `blog` MODIFY `des` VARCHAR(60000) NOT NULL;
+
+-- AlterTable
+ALTER TABLE `service` MODIFY `catagorises` VARCHAR(191) NOT NULL DEFAULT '',
+    MODIFY `price` VARCHAR(191) NOT NULL DEFAULT '';

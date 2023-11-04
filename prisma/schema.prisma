@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        Int    @id @default(autoincrement())
+  firstName String @db.VarChar(50)
+  lastName  String @db.VarChar(50)
+  email     String @unique @db.VarChar(50)
+  password  String @db.VarChar(50)
+
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model service {
+  id       Int      @id @default(autoincrement())
+  title    String   @db.VarChar(50)
+  imgCDN   String   @db.VarChar(300)
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model blog {
+  id       Int      @id @default(autoincrement())
+  title    String   @default("") @db.VarChar(50)
+  imgCDN   String   @default("") @db.VarChar(300)
+  des      String   @default("") @db.VarChar(60000)
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+// schema.prisma
+// model dynamicBlog {
+//   id       Int      @id @default(autoincrement())
+//   title    String
+//   imgCDN   String   @db.VarChar(300)
+//   content  String
+//   createAt DateTime @default(now()) @db.Timestamp(0)
+//   updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+// }
+
+model About {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+  name    String @default("DefaultName") @db.VarChar(50)
+  imgCDN  String @db.VarChar(3000)
+
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model Counter {
+  id            Int    @id @default(autoincrement())
+  SaleRate      String
+  Conversations String
+  Subscribers   String
+  TotalRevenue  String
+
+  createAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model price {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @default("") // Set a default value, like an empty string
+  catagorises String   @default("")
+  price       String   @default("") // Set a default price value or another suitable default value
+  features1   String   @default("")
+  features2   String   @default("")
+  features3   String   @default("")
+  features4   String   @default("")
+  createAt    DateTime @default(now()) @db.Timestamp(0)
+  updateAt    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
